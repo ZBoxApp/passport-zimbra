@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Header>
+    <context xmlns="urn:zimbra">
+      <authToken>@auth_token</authToken>
+      <account by="name">@account</account>
+      <userAgent name="zclient" version="8.6.0_GA_1153"/>
+    </context>
+  </soap:Header>
+  <soap:Body>
+    <GetInfoRequest rights="" sections="attrs" xmlns="urn:zimbraAccount"/>
+  </soap:Body>
+</soap:Envelope>
