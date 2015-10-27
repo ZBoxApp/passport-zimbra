@@ -1,0 +1,6 @@
+*.md
+.DS_Store
+.git*
+Makefile
+docs/
+tests/
