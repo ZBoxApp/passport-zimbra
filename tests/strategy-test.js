@@ -12,7 +12,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy': {
         topic: function() {
-            return new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            return new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
         },
 
         'should be named session': function (strategy) {
@@ -22,7 +22,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
             return strategy;
         },
 
@@ -34,6 +34,7 @@ vows.describe('ZimbraStrategy').addBatch({
                     self.callback(null, user, info);
                 };
                 strategy.fail = function(err) {
+                    console.log(err);
                     self.callback(new Error('should-not-be-called'));
                 };
 
@@ -43,7 +44,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.body = {
                     email: 'elias@zboxapp.dev',
-                    token: 'zboxadmin'
+                    token: '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b'
                 };
 
                 process.nextTick(function () {
@@ -62,7 +63,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request with credentials in query': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
             return strategy;
         },
 
@@ -83,7 +84,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.query = {
                     email: 'elias@zboxapp.dev',
-                    token: 'zboxadmin',
+                    token: '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b',
                     redirect_uri: 'http://localhost:8065/zimbra' // Esto quizas no haga falta si hago la consulta por POST
                 };
 
@@ -103,7 +104,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request with credentials in header': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
             return strategy;
         },
 
@@ -124,7 +125,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.headers = {
                     email: 'elias@zboxapp.dev',
-                    token: 'zboxadmin',
+                    token: '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b',
                     redirect_uri: 'http://localhost:8065/zimbra' // Esto quizas no haga falta si hago la consulta por POST
                 };
 
@@ -146,7 +147,7 @@ vows.describe('ZimbraStrategy').addBatch({
         topic: function() {
             var strategy = new ZimbraStrategy(
                 {
-                    url: 'http://192.168.99.100:9292/login',
+                    url: 'https://localhost:7443/service/soap/AuthRequest',
                     passReqToCallback: true
                 }, function(){});
             return strategy;
@@ -170,7 +171,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.body = {
                     email: 'elias@zboxapp.dev',
-                    token: 'zboxadmin',
+                    token: '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b',
                     redirect_uri: 'http://localhost:8065/zimbra' // Esto quizas no haga falta si hago la consulta por POST
                 };
 
@@ -194,7 +195,7 @@ vows.describe('ZimbraStrategy').addBatch({
     'strategy handling a request with parameter options set to plain string': {
         topic: function() {
             var strategy = new ZimbraStrategy({
-                url: 'http://192.168.99.100:9292/login',
+                url: 'https://localhost:7443/service/soap/AuthRequest',
                 email: 'correo',
                 token: 'password'
             }, function(){});
@@ -218,7 +219,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.body = {
                     correo: 'elias@zboxapp.dev',
-                    password: 'zboxadmin'
+                    password: '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b'
                 };
 
                 process.nextTick(function () {
@@ -237,7 +238,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that is not verified': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
             return strategy;
         },
 
@@ -273,7 +274,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that is not verified with additional info': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'http://192.168.99.100:9292/login'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
             return strategy;
         },
 
@@ -312,7 +313,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that encounters an error during verification': {
         topic: function() {
-            var strategy = new ZimbraStrategy({ url: 'http://192.168.99.100:9292/login' }, function(){});
+            var strategy = new ZimbraStrategy({ url: 'https://localhost:7443/service/soap/AuthRequest' }, function(){});
             return strategy;
         },
 
@@ -336,7 +337,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
                 req.body = {};
                 req.body.email = 'elias@zboxapp.dev';
-                req.body.token = 'zboxadmin';
+                req.body.token = '0_af3a639338d5ef7a98f233d88d3743a9947c2dd8_69643d33363a34636235313566352d323635632d346230332d623433632d3131336635643637333331353b6578703d31333a313434363133323931363739333b747970653d363a7a696d6272613b7469643d31303a313035333537323436303b76657273696f6e3d31333a382e362e305f47415f313135333b';
 
                 process.nextTick(function () {
                     strategy.authenticate(req);
