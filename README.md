@@ -12,12 +12,14 @@ unobtrusively integrated into any application or framework that supports
 
 ## Installation
 
-    $ npm install git+https://git@github.com:ZBoxApp/passport-zimbra.git
+    $ npm i passport-zimbra
 
 ## Usage
 
-#### Configure Strategy
+#### Configure Strategies
 
+
+##### ZimbraStrategy
 The zimbra token authentication strategy authenticates users using an email an a token issued by Zimbra.
 The strategy requires a `url` to `POST` and verify against and a `verify` callback, which accepts these
 credentials and calls `done` providing a user.
@@ -32,8 +34,26 @@ credentials and calls `done` providing a user.
       }
     ));
 
+##### TripleDES Strategy
+The TripleDES authentication strategy authenticates users using an encrypted email address with a tripleDES cipher to be
+decrypted by the strategy and matching them.
+
+The strategy requires a `passphrase` which holds the key to decrypt the email and a `verify` calback, which accepts these
+credentials an calls `done` providing the user.
+
+    passport.use(new TripleDesStrategy( { passphrase: 'YOUR super Secr3t K3y'
+          function(email, done) {
+            User.findOne({ email: email }, function (err, user) {
+              if (err) { return done(err); }
+              if (!user) { return done(null, false); }
+              return done(null, user);
+            });
+          }
+        ));
+
 #### Authenticate Requests
 
+##### ZimbraStrategy
 Use `passport.authenticate()`, specifying the `'zimbra'` strategy, to
 authenticate requests.
 
@@ -41,21 +61,35 @@ For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
     app.post('/api/authenticate',
-      passport.authenticate('zimbra', { session: false,failureRedirect: '/api/unauthorized' }),
+      passport.authenticate('zimbra', { session: false, failureRedirect: '/api/unauthorized' }),
+      function(req, res) {
+        res.json({ message: "Authenticated" })
+      });
+
+##### TripleDES Strategy
+Use `passport.authenticate()`, specifying the `'crypto'` strategy, to
+authenticate requests.
+
+For example, as route middleware in an [Express](http://expressjs.com/)
+application:
+
+    app.post('/api/authenticate',
+      passport.authenticate('crypto', { session: false, failureRedirect: '/api/unauthorized' }),
       function(req, res) {
         res.json({ message: "Authenticated" })
       });
 
 ## Examples
 
+##### ZimbraStrategy
     curl -v -d "email=user@example.com&token=asdasjsdgfjkjhg" http://127.0.0.1:3000/api/authenticate
 
 The token & email can be either in the request body, querystring or header
 
-## Tests
+##### TripleDES Strategy
+    curl -v -d "email=U2FsdGVkX19F%2FiF4U81%2Fifup9ukLQJXUqBuSe7LqantML%2Bu%2BMM5kVA%3D%3D" http://127.0.0.1:3000/api/authenticate
 
-    $ npm install --dev
-    $ make test
+The email can be either in the request body, querystring or header
 
 
 ## License
