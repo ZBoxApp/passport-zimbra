@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- 5.9.0
+deploy:
+  provider: npm
+  email: nahumhbl@gmail.com
+  api_key:
+    secure: B5Gqf8ifS15uOljgAQYpFyfFS7VuakWnutZJC+YwaQWI5ubHU2mMU3sY1tIdbnBZe3MbPcX9J2HRVofzi1gIjWq+j5ws30DMNrNm+g5GTH/P69A/wpX3T/dq1MpZK8aypa6u7Umca9PkBsj8kiaX+L2HbKKgligfGMURqW6/uPoihPQDznR6y/f2aNXNoOfBxeHZBPUXADkAq6GQ5KIiF562LHl+sqrU18AX9x4ojoIdVpB/aCIga0CDWINvuDIzVOmZlcxp76geNJuMDKtQ5i8AU1RcuYJZkGfG2qalMzfguCTN6fDcVpsYvmadW7Kea1Gi7jqWh7DX65CggBlw3BxAg/YvTDJA7Zmu9zcb2TjEfUmd16xR65JKHt8Zis2Kuoc4FmJXIolK0IUs0bmdIJBoUMlrA9lwFF52mQmSIqu6ZxZGJ3TmgbwpPES7r5YS/CcEH/j58Fby41i4F+yPt57LeqFcn/xxBpBVZbi4YPnoRk0JZe+/hALDl5hC4hIECKow1cEXv9aMb9jHasn/naHFymgGcW3+d5LUmxsKkKuG3l/bZY4RoLAuy3jhhqXD8O0WwuzQN7iqxBDmeyT9QjKQTMnEsUTNEx6olCnkzQ5ebNumzHylYeVmywhuEnlwXOYr5ds4kCV32Dl05zpCNQxNvGqn/ySvn0bG/GV24K0=
+  on:
+    tags: true
+    repo: ZBoxApp/passport-zimbra

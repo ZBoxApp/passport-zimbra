@@ -12,7 +12,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy': {
         topic: function() {
-            return new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            return new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
         },
 
         'should be named session': function (strategy) {
@@ -22,7 +22,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
             return strategy;
         },
 
@@ -63,7 +63,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request with credentials in query': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
             return strategy;
         },
 
@@ -104,7 +104,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request with credentials in header': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
             return strategy;
         },
 
@@ -148,7 +148,8 @@ vows.describe('ZimbraStrategy').addBatch({
             var strategy = new ZimbraStrategy(
                 {
                     url: 'https://localhost:7443/service/soap/AuthRequest',
-                    passReqToCallback: true
+                    passReqToCallback: true,
+                    test: true
                 }, function(){});
             return strategy;
         },
@@ -197,7 +198,8 @@ vows.describe('ZimbraStrategy').addBatch({
             var strategy = new ZimbraStrategy({
                 url: 'https://localhost:7443/service/soap/AuthRequest',
                 email: 'correo',
-                token: 'password'
+                token: 'password',
+                test: true
             }, function(){});
             return strategy;
         },
@@ -238,7 +240,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that is not verified': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
             return strategy;
         },
 
@@ -274,7 +276,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that is not verified with additional info': {
         topic: function() {
-            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest'}, function(){});
+            var strategy = new ZimbraStrategy({url: 'https://localhost:7443/service/soap/AuthRequest', test: true}, function(){});
             return strategy;
         },
 
@@ -313,7 +315,7 @@ vows.describe('ZimbraStrategy').addBatch({
 
     'strategy handling a request that encounters an error during verification': {
         topic: function() {
-            var strategy = new ZimbraStrategy({ url: 'https://localhost:7443/service/soap/AuthRequest' }, function(){});
+            var strategy = new ZimbraStrategy({ url: 'https://localhost:7443/service/soap/AuthRequest', test:true}, function(){});
             return strategy;
         },
 
